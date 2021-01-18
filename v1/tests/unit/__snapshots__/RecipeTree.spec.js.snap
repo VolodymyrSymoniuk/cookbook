@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeTree component should render as expected 1`] = `
+<section>
+  <ul>
+    <recipetreeitem-stub recipeid="root"></recipetreeitem-stub>
+  </ul>
+</section>
+`;

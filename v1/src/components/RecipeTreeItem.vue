@@ -1,7 +1,7 @@
 <template>
   <li>
     <div
-      :class="[isFolder ? 'bold' : '', 'item']"
+      :class="[isFolder ? 'bold' : '', 'item', 'pointer']"
       @click="toggle"
       @dblclick="makeFolder"
     >
@@ -16,13 +16,13 @@
         visibility
       </span>
     </div>
-    <ul v-show="isOpen" v-if="isFolder">
+    <ul v-show="isOpen" v-if="isFolder" class="children">
       <RecipeTreeItem
         v-for="(childId, index) in item.children"
         :key="index"
         :recipeId="childId"
       ></RecipeTreeItem>
-      <li class="item" @click="addItem">+</li>
+      <li class="pointer add-item" @click="addItem">+</li>
     </ul>
   </li>
 </template>

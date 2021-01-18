@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
-    <Recipe />
     <RecipeTree />
+    <Recipe />
   </div>
 </template>
 

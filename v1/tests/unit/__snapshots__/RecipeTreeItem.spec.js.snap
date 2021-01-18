@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeTree component should render as expected 1`] = `
+<li>
+  <div class="item pointer">
+    Fried potato
+    <!----> <span class="material-icons show-icon">
+      visibility
+    </span>
+  </div>
+  <!---->
+</li>
+`;

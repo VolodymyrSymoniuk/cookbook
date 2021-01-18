@@ -1,7 +1,7 @@
 <template>
   <section>
     <ul>
-      <RecipeTreeItem :recipeId="rootRecipeId"></RecipeTreeItem>
+      <RecipeTreeItem :recipeId="rootRecipeId" />
     </ul>
   </section>
 </template>

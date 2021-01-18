@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeTree component should render as expected 1`] = `
+<section class="recipe">
+  <div class="recipe-description">
+    <ninjainput-stub value="" class="description-input"></ninjainput-stub> <span class="material-icons tip-edit">
+        create
+      </span>
+  </div>
+  <p>Versions:</p>
+  <ul>
+    <li>
+      version1
+    </li>
+    <li>
+      version2
+    </li>
+    <li>
+      version3
+    </li>
+  </ul> <small class="recipe-creation-date">
+    Created at: <time>I am formatted date</time></small>
+</section>
+`;
