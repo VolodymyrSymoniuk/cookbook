@@ -53,7 +53,7 @@ export default new Vuex.Store({
     },
     addNewRecipe({ commit }, recipe) {
       commit("addNewRecipe", recipe);
-      commit("setActiveRecipe", recipe.id);
+      commit("setActiveRecipe", recipe);
     },
     addActiveRecipeVersion({ commit, getters }, version) {
       const activeRecipe = getters.activeRecipe;

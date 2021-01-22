@@ -41,6 +41,11 @@ export default {
       this.$refs.newIngredientInput.focus();
     },
     addIngredient() {
+      if (!this.newIngredient) {
+        this.newIngredient = "ingredient can not be empty";
+        return;
+      }
+
       this.$emit("add", {
         id: shortid.generate(),
         name: this.newIngredient

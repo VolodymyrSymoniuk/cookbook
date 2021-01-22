@@ -4,7 +4,7 @@
       <v-list-item
         v-for="(recipe, i) of recipes"
         :key="i"
-        @click="setCurrentRoot(recipe)"
+        @click="showRecipe(recipe.id)"
       >
         <v-list-item-content>
           <v-list-item-title>{{ recipe.title }}</v-list-item-title>
@@ -20,7 +20,12 @@
                 color="teal"
                 :content="recipe.childrenCount"
               >
-                <v-icon class="mr-3" v-on="on">mdi-chevron-down</v-icon>
+                <v-icon
+                  class="mr-3"
+                  v-on="on"
+                  @click.stop="setCurrentRoot(recipe)"
+                  >mdi-chevron-down</v-icon
+                >
               </v-badge>
             </template>
             <span>Look over the recipe children</span>
@@ -44,7 +49,6 @@
               <v-icon
                 class="mr-3"
                 v-on="on"
-                @click.stop="showRecipe(recipe.id)"
                 :color="isRecipeActive(recipe.id) ? 'teal' : ''"
                 >mdi-eye</v-icon
               >

@@ -148,6 +148,8 @@ export default {
         createdAt: Date.now()
       };
 
+      this.showNotification("New version was successfully added");
+
       this.addActiveRecipeVersion(newVersion);
       this.versions.push(newVersion);
       this.version = newVersion;
