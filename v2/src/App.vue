@@ -7,26 +7,40 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn @click="drawer = !drawer" text>
+      <v-btn :key="drawer" @click="drawer = !drawer" text>
         <span class="mr-2">{{ drawer ? "Close" : "Open" }} recipe book</span>
         <v-icon>mdi-notebook</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main>
-      <RecipesDrawer @toggle-drawer="drawer = !drawer" :drawer="drawer" />
+      <v-navigation-drawer v-model="drawer" absolute temporary right>
+        <template v-slot:prepend>
+          <Breadcrumbs />
+          <v-divider></v-divider>
+          <List />
+        </template>
+      </v-navigation-drawer>
+
+      <v-container>
+        <v-row>
+          <Recipe />
+        </v-row>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import RecipesDrawer from "@/components/RecipesDrawer";
+import Breadcrumbs from "@/components/Recipes/Breadcrumbs";
+import List from "@/components/Recipes/List";
+import Recipe from "@/components/Recipe";
 
 export default {
   name: "App",
-  components: { RecipesDrawer },
+  components: { Breadcrumbs, List, Recipe },
   data: () => ({
-    drawer: null
+    drawer: false
   })
 };
 </script>

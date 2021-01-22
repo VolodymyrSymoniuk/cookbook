@@ -1,5 +1,6 @@
-html {
-  overflow-y: hidden;
+html,
+body {
+  overflow: hidden;
 }
 
 .letter-spacing-medium {
@@ -11,5 +12,16 @@ html {
 }
 
 .v-navigation-drawer {
-  overflow-y: auto;
+  overflow-y: auto !important;
+  width: 40% !important;
+}
+
+.recipe {
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .v-navigation-drawer {
+    width: 100% !important;
+  }
 }

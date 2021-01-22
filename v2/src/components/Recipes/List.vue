@@ -32,7 +32,7 @@
             :key="recipe.childrenCount"
           >
             <template #activator="{ on }">
-              <v-icon class="mr-3" v-on="on" @click.stop="createChildOf(recipe)"
+              <v-icon class="mr-3" v-on="on" @click.stop="createRecipe(recipe)"
                 >mdi-source-branch</v-icon
               >
             </template>
@@ -54,7 +54,7 @@
         </v-list-item-icon>
       </v-list-item>
 
-      <v-list-item @click="createChildOf(currentRootRecipe)">
+      <v-list-item @click="createRecipe(currentRootRecipe)">
         <v-list-item-content>
           <v-list-item-title>
             <v-icon class="mr-2"> mdi-plus </v-icon>add new recipe
@@ -62,21 +62,31 @@
         </v-list-item-content>
       </v-list-item>
     </v-list-item-group>
+    <NewRecipeModal
+      @close="toggleNewRecipeModel"
+      @save="saveRecipeFromModal"
+      :isShown="showModal"
+    />
   </v-list>
 </template>
 
 <script>
 import shortid from "shortid";
 import { mapGetters, mapMutations, mapActions } from "vuex";
+import NewRecipeModal from "@/components/NewRecipeModal";
 
 export default {
   name: "RecipesList",
+  components: { NewRecipeModal },
   computed: {
     ...mapGetters(["getChildRecipes", "currentRootRecipe", "isRecipeActive"]),
     recipes() {
       return this.getChildRecipes(this.currentRootRecipe.id);
     }
   },
+  data: () => ({
+    showModal: false
+  }),
   methods: {
     ...mapMutations(["setActiveRecipeById", "setCurrentRootRecipeById"]),
     ...mapActions(["addNewRecipe"]),
@@ -88,16 +98,18 @@ export default {
         this.setCurrentRootRecipeById(recipe.id);
       }
     },
-    async createChildOf(recipe) {
+    toggleNewRecipeModel() {
+      this.showModal = !this.showModal;
+    },
+    saveRecipeFromModal(recipe) {
+      this.toggleNewRecipeModel();
+      this.createRecipe(recipe);
+    },
+    createRecipe(recipe) {
       let { title, description, ingredients, id: parent } = recipe;
       if (recipe.title.toLowerCase() === "root") {
-        try {
-          title = await this.$prompt("Enter title of new recipe:");
-          description = await this.$prompt("Enter description of new recipe:");
-        } catch (_) {
-          this.$alert("Invalid recipe data entered!");
-          return;
-        }
+        this.toggleNewRecipeModel();
+        return;
       }
 
       this.addNewRecipe({
@@ -106,7 +118,7 @@ export default {
         description,
         ingredients: ingredients || [],
         createdAt: Date.now(),
-        parent,
+        parent: parent || null,
         versions: []
       });
     }
