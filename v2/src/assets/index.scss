@@ -7,21 +7,30 @@ body {
   letter-spacing: 0.1rem;
 }
 
+.disguised-input {
+  outline: none;
+}
+
 .pointer {
   cursor: pointer;
 }
 
 .v-navigation-drawer {
-  overflow-y: auto !important;
   width: 40% !important;
+
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+.white-text {
+  color: white !important;
+}
+
+.recipe-container {
+  max-height: calc(100vh - 56px);
 }
 
 .recipe {
   box-shadow: none !important;
-}
-
-@media (max-width: 768px) {
-  .v-navigation-drawer {
-    width: 100% !important;
-  }
 }

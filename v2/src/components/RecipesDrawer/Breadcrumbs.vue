@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "RecipesBreadcrumbs",
@@ -23,9 +23,9 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["setCurrentRootRecipeById"]),
+    ...mapActions(["setCurrentRootRecipe"]),
     setCurrentRoot(recipe) {
-      this.setCurrentRootRecipeById(recipe.id);
+      this.setCurrentRootRecipe(recipe.id);
     }
   }
 };

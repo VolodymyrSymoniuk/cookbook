@@ -14,15 +14,9 @@
     </v-app-bar>
 
     <v-main>
-      <v-navigation-drawer v-model="drawer" absolute temporary right>
-        <template v-slot:prepend>
-          <Breadcrumbs />
-          <v-divider></v-divider>
-          <List />
-        </template>
-      </v-navigation-drawer>
+      <RecipesDrawer :drawer="drawer" @set-drawer="setDrawer" />
 
-      <v-container>
+      <v-container class="recipe-container overflow-y-auto">
         <v-row>
           <Recipe />
         </v-row>
@@ -32,16 +26,20 @@
 </template>
 
 <script>
-import Breadcrumbs from "@/components/Recipes/Breadcrumbs";
-import List from "@/components/Recipes/List";
 import Recipe from "@/components/Recipe";
+import RecipesDrawer from "@/components/RecipesDrawer";
 
 export default {
   name: "App",
-  components: { Breadcrumbs, List, Recipe },
+  components: { Recipe, RecipesDrawer },
   data: () => ({
     drawer: false
-  })
+  }),
+  methods: {
+    setDrawer(drawer) {
+      this.drawer = drawer;
+    }
+  }
 };
 </script>
 

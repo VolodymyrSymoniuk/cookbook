@@ -44,7 +44,7 @@
               <v-icon
                 class="mr-3"
                 v-on="on"
-                @click.stop="setActiveRecipe(recipe.id)"
+                @click.stop="showRecipe(recipe.id)"
                 :color="isRecipeActive(recipe.id) ? 'teal' : ''"
                 >mdi-eye</v-icon
               >
@@ -72,7 +72,7 @@
 
 <script>
 import shortid from "shortid";
-import { mapGetters, mapMutations, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import NewRecipeModal from "@/components/NewRecipeModal";
 
 export default {
@@ -88,14 +88,13 @@ export default {
     showModal: false
   }),
   methods: {
-    ...mapMutations(["setActiveRecipeById", "setCurrentRootRecipeById"]),
-    ...mapActions(["addNewRecipe"]),
-    setActiveRecipe(id) {
-      this.setActiveRecipeById(id);
+    ...mapActions(["addNewRecipe", "setActiveRecipe", "setCurrentRootRecipe"]),
+    showRecipe(id) {
+      this.setActiveRecipe(id);
     },
     setCurrentRoot(recipe) {
       if (recipe.childrenCount) {
-        this.setCurrentRootRecipeById(recipe.id);
+        this.setCurrentRootRecipe(recipe.id);
       }
     },
     toggleNewRecipeModel() {
@@ -119,7 +118,7 @@ export default {
         ingredients: ingredients || [],
         createdAt: Date.now(),
         parent: parent || null,
-        versions: []
+        versions: [{ id: "default", title: "default recipe version" }]
       });
     }
   }

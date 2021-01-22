@@ -7,12 +7,12 @@
       <v-card-text>
         <v-text-field
           color="teal"
-          v-model="title"
+          v-model.trim="title"
           label="Title..."
         ></v-text-field>
         <v-textarea
           color="teal"
-          v-model="description"
+          v-model.trim="description"
           label="Description..."
         ></v-textarea>
       </v-card-text>
